@@ -1,0 +1,80 @@
+@import "normalize";
+
+body{
+    background: #DEB887;
+    font-size: 36px;
+}
+.container{
+    position: relative;
+    min-height: 100vh;
+}
+.position{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -40%);
+    width: 200px;
+    height: 320px;
+    perspective: 800px;
+    transition: transform 2s ease;
+
+    &.flip{
+        transform: translate(200px, -128px);
+        transition: transform 2s ease;
+        .back{
+            transform: rotateY(180deg);
+        }
+        .front{
+            z-index: 5;
+            transform: rotateY(0deg);
+        }
+    }
+}
+
+.back,
+.front{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 320px;
+    border-radius: 10px;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+}
+.back{
+    background: url(../images/back.png) no-repeat center center;
+    z-index: 2;
+    backface-visibility: hidden;
+}
+.front{
+    background: #fff;
+    position: relative;
+    transform:rotateY(-180deg);
+    backface-visibility: hidden;
+    &.red{
+        color: red;
+    }
+
+    .top,
+    .center,
+    .bottom{
+        position: absolute;  
+    }
+    .top{
+        top: 10px;
+        left: 10px;
+    }
+    .center{
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 58px;
+    }
+    .bottom{
+        transform: rotate(-180deg);
+        bottom: 10px;
+        right: 10px;
+    }
+}
+
